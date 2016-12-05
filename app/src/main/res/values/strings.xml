@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">AndroidReportListDemo</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="authorized_transactions">Authorized Transactions</string>
+    <string name="authorized_transactions_not_available">Authorized Transactions Not Available</string>
+    <string name="posted_transactions_not_available">Posted Transactions Not Available</string>
+    <string name="posted_transactions">Posted Transactions</string>
+    <string name="total">Total</string>
+
+
+</resources>

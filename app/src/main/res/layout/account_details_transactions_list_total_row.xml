@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/transaction_total_row"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="20dp"
+    android:focusable="true" android:importantForAccessibility="yes">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="25dp"
+        android:layout_toLeftOf="@+id/total"
+        style="@style/AccountDetailTransactionTotalDescriptionText"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@id/total"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        style="@style/AccountDetailTransactionTotalAmountText"
+        />
+
+</RelativeLayout>
