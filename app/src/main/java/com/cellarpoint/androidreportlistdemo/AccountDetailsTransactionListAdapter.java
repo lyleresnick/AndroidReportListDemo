@@ -20,12 +20,13 @@ import java.util.List;
 
 public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<AccountDetailsTransactionListAdapter.TransactionsViewHolder> {
 
+    private static String TAG = "AccountDetailsTransactionListAdapter";
+
     private List<RowInterface> dataset = new ArrayList<RowInterface>();
 
     private boolean odd = false;
 
     final static DateFormat inboundDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 
     public void appendHeaderRow( String name ) {
         dataset.add( new HeaderRow( name ) );
@@ -42,8 +43,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         catch ( ParseException e ) {
             Log.d(TAG, "Transaction Date format is wrong");
         }
-
-
         dataset.add( new SubHeaderRow( date, odd ) );
     }
 
@@ -56,7 +55,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         dataset.add(new SubFooterRow( odd ));
     }
 
-
     public void appendTotalRow(String total) {
 
         odd = !odd;
@@ -64,12 +62,9 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         dataset.add(new TotalRow(total, odd));
     }
 
-
-
     public void appendMessageRow( String message ) {
         dataset.add( new MessageRow( message ) );
     }
-
 
     // overides - not public
 
@@ -120,8 +115,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_subfooter_row, parent, false);
                 viewHolder = new SubFooterRowViewHolder(v);
                 break;
-
-
         }
         return viewHolder;
     }
@@ -148,10 +141,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
             backgroundColor = rootView.getResources().getColor(R.color.even_band_background );
         }
         rootView.setBackgroundColor(backgroundColor);
-
     }
-
-
 
     public abstract class TransactionsViewHolder extends RecyclerView.ViewHolder {
 
@@ -176,7 +166,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
             HeaderRow headerRow = (HeaderRow) dataset.get(position);
             title.setText( headerRow.title );
         }
-
     }
 
     private class SubHeaderViewHolder extends TransactionsViewHolder {
@@ -185,7 +174,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         public TextView title;
 
         public SubHeaderViewHolder(View v ) {
-
             super(v);
 
             rootView = v;
@@ -207,9 +195,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         public TextView description;
         public TextView amount;
 
-
         public RowViewHolder(View v) {
-
             super(v);
 
             rootView = v;
@@ -233,9 +219,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         public TextView description;
         public TextView amount;
 
-
         public SubFooterRowViewHolder(View v) {
-
             super(v);
             rootView = v;
         }
@@ -253,10 +237,9 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         public View rootView;
         public TextView total;
 
-
         public TotalRowViewHolder(View v) {
-
             super(v);
+
             rootView = v;
             total = (TextView) v.findViewById(R.id.total);
         }
@@ -267,7 +250,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
             total.setText(row.total);
             odd = false;
             processBackgroundColour(row.odd, rootView);
-
         }
     }
 
@@ -277,12 +259,10 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         public View rootView;
         public TextView message;
 
-
         public MessageRowViewHolder(View v) {
-
             super(v);
-            message = (TextView)v.findViewById( R.id.message);
 
+            message = (TextView)v.findViewById( R.id.message);
             rootView = v;
         }
 
@@ -352,7 +332,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         public String amount;
         public boolean odd;
 
-
         public Row(String description, String amount, String debit, boolean odd ) {
 
             this.odd = odd;
@@ -361,7 +340,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
                 this.amount = amount;
             else
                 this.amount = "-" + amount ;
-
         }
 
         public int getType() {
@@ -378,7 +356,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
 
         public int getType() {
-
             return SUB_FOOTER_ROW;
         }
     }
@@ -395,11 +372,9 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
             this.odd = odd;
             this.total = total;
-
         }
 
         public int getType() {
-
             return TOTAL_ROW;
         }
     }
@@ -409,9 +384,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public String message;
 
-
         public MessageRow(String message ) {
-
             this.message = message;
         }
 
