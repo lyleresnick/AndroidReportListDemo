@@ -4,8 +4,8 @@
 
 
     <string name="authorized_transactions">Authorized Transactions</string>
-    <string name="authorized_transactions_not_available">Authorized Transactions Not Available</string>
-    <string name="posted_transactions_not_available">Posted Transactions Not Available</string>
+    <string name="authorized_transactions_not_available">Authorized Transactions Are Not Available</string>
+    <string name="posted_transactions_not_available">Posted Transactions Are Not Available</string>
     <string name="posted_transactions">Posted Transactions</string>
     <string name="total">Total</string>
 
