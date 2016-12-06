@@ -291,7 +291,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     private static class HeaderRow implements RowInterface {
 
-        public String title;
+        private String title;
 
         public HeaderRow(String title) {
             this.title = title;
@@ -306,8 +306,8 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         final static DateFormat df = new SimpleDateFormat("EEEE MMM dd, yyyy");
 
-        public String title;
-        public boolean odd;
+        private String title;
+        private boolean odd;
 
         public SubHeaderRow(Date date, boolean odd) {
 
@@ -323,9 +323,9 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     private static class Row implements RowInterface {
 
-        public String description;
-        public String amount;
-        public boolean odd;
+        private String description;
+        private String amount;
+        private boolean odd;
 
         public Row(String description, String amount, String debit, boolean odd ) {
 
@@ -344,7 +344,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     private static class SubFooterRow implements RowInterface {
 
-        public boolean odd;
+        private boolean odd;
 
         public SubFooterRow( boolean odd ) {
             this.odd = odd;
@@ -357,11 +357,8 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     private static class TotalRow implements RowInterface {
 
-        public String description;
-        public String total;
-        public String totalAccess;
-        public boolean odd;
-
+        private String total;
+        private boolean odd;
 
         public TotalRow(String total, boolean odd) {
 
@@ -374,10 +371,9 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-
     private static class MessageRow implements RowInterface {
 
-        public String message;
+        private String message;
 
         public MessageRow(String message ) {
             this.message = message;
@@ -387,9 +383,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
             return MESSAGE_ROW;
         }
     }
-
-
-
 }
 
 
