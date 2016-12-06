@@ -1,6 +1,5 @@
 package com.cellarpoint.androidreportlistdemo;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -97,20 +96,6 @@ public class TransactionModel {
     );
 
 
-   // static List<TransactionModel> allData = new CompositeUnmodifiableList<TransactionModel>(authorizedData, postedData );
-
-    static List<TransactionModel> allData = concat( authorizedData, postedData);
-
-
-    static List<TransactionModel> concat( List<TransactionModel> authorizedData, List<TransactionModel>postedData) {
-
-        List<TransactionModel> list = new ArrayList<>();
-
-        list.addAll(authorizedData);
-        list.addAll(postedData);
-
-        return list;
-    }
 }
 
 

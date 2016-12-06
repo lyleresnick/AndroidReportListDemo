@@ -36,12 +36,10 @@ public class AccountDetailsCreditCardTransactionsFragment extends Fragment imple
     public void initializeAdapter(AccountDetailsTransactionListAdapter adapter) {
 
         appendTransactions(adapter, TransactionModel.authorizedData, getResources().getString(R.string.authorized_transactions), getResources().getString(R.string.authorized_transactions_not_available ) );
-        appendTransactions(adapter, null, getResources().getString(R.string.posted_transactions), getResources().getString(R.string.posted_transactions_not_available ) );
+        appendTransactions(adapter, TransactionModel.postedData, getResources().getString(R.string.posted_transactions), getResources().getString(R.string.posted_transactions_not_available ) );
     }
 
     private void appendTransactions( AccountDetailsTransactionListAdapter adapter, List<TransactionModel> transactions, String headerText, String noTransText) {
-
-
 
         adapter.appendHeaderRow( headerText );
 
