@@ -216,8 +216,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
     private class SubFooterRowViewHolder extends TransactionsViewHolder {
 
         public View rootView;
-        public TextView description;
-        public TextView amount;
 
         public SubFooterRowViewHolder(View v) {
             super(v);
@@ -277,8 +275,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-
-
     // Row
 
     private interface RowInterface {
@@ -289,7 +285,6 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         int MESSAGE_ROW = 3;
         int TOTAL_ROW = 4;
         int SUB_FOOTER_ROW = 5;
-
 
         int getType();
     }
@@ -347,7 +342,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-    private class SubFooterRow implements RowInterface {
+    private static class SubFooterRow implements RowInterface {
 
         public boolean odd;
 
@@ -360,7 +355,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-    private class TotalRow implements RowInterface {
+    private static class TotalRow implements RowInterface {
 
         public String description;
         public String total;
