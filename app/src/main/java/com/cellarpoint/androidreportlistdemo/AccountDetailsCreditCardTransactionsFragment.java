@@ -3,6 +3,8 @@ package com.cellarpoint.androidreportlistdemo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,27 +13,31 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-public class AccountDetailsCreditCardTransactionsFragment extends Fragment implements AccountDetailsTransactionsList.Initializer {
+public class AccountDetailsCreditCardTransactionsFragment extends Fragment {
 
     public AccountDetailsCreditCardTransactionsFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View mainView = inflater.inflate(R.layout.account_details_list_fragment, container, false);
-
-        new AccountDetailsTransactionsList(mainView, this);
-
+        initializeListView(mainView);
         return mainView;
     }
 
+    public void initializeListView(View mainView) {
+
+        RecyclerView  listView = (RecyclerView) mainView.findViewById(R.id.listView);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager( mainView.getContext() );
+        listView.setLayoutManager(layoutManager);
+
+        AccountDetailsTransactionListAdapter adapter = new AccountDetailsTransactionListAdapter();
+        initializeAdapter( adapter );
+        listView.setAdapter( adapter );
+    }
 
     public void initializeAdapter(AccountDetailsTransactionListAdapter adapter) {
 

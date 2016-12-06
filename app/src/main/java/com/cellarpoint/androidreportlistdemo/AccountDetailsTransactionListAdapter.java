@@ -20,8 +20,6 @@ import java.util.List;
 
 public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<AccountDetailsTransactionListAdapter.TransactionsViewHolder> {
 
-    private final String TAG = "AccntDtlsTrnsLstAdptr";
-
     private List<RowInterface> dataset = new ArrayList<RowInterface>();
 
     private boolean odd = false;
