@@ -65,14 +65,15 @@ public class AccountDetailsCreditCardTransactionsFragment extends Fragment {
             adapter.appendSubHeaderRow(curDate);
             while ((curTransaction != null) && curTransaction.date.equals(curDate)) {
 
-                BigDecimal amountBigDec = new BigDecimal(curTransaction.amount);
+                String amount;
                 if (!curTransaction.debit.equals("D")) {
-                    total = total.subtract(amountBigDec);
+                    amount = "-" + curTransaction.amount;
                 }
                 else {
-                    total = total.add(amountBigDec);
+                    amount = curTransaction.amount;
                 }
-                adapter.appendDetailRow(curTransaction.description, curTransaction.amount, curTransaction.debit );
+                total = total.add(new BigDecimal(amount));
+                adapter.appendDetailRow(curTransaction.description, amount );
                 curTransaction = ( i < transactions.size() ) ? transactions.get( i++ ) : null;
             }
             adapter.appendSubFooterRow();

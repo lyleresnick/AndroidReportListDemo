@@ -46,8 +46,8 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         dataset.add( new SubHeaderRow( date, odd ) );
     }
 
-    public void appendDetailRow( String description, String amount, String debit ) {
-        dataset.add( new Row( description, amount, debit, odd ) );
+    public void appendDetailRow( String description, String amount ) {
+        dataset.add( new DetailRow( description, amount, odd ) );
     }
 
     public void appendSubFooterRow() {
@@ -92,7 +92,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
                 viewHolder = new SubHeaderViewHolder(v);
                 break;
 
-            case RowInterface.ROW:
+            case RowInterface.DETAIL_ROW:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_row, parent, false);
                 viewHolder = new RowViewHolder(v);
@@ -205,7 +205,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind( int position ) {
 
-            Row row = (Row) dataset.get(position);
+            DetailRow row = (DetailRow) dataset.get(position);
             description.setText( row.description );
             amount.setText( row.amount );
 
@@ -281,7 +281,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         int HEADER = 0;
         int SUBHEADER = 1;
-        int ROW = 2;
+        int DETAIL_ROW = 2;
         int MESSAGE_ROW = 3;
         int TOTAL_ROW = 4;
         int SUB_FOOTER_ROW = 5;
@@ -321,24 +321,21 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-    private static class Row implements RowInterface {
+    private static class DetailRow implements RowInterface {
 
         private String description;
         private String amount;
         private boolean odd;
 
-        public Row(String description, String amount, String debit, boolean odd ) {
+        public DetailRow(String description, String amount, boolean odd ) {
 
             this.odd = odd;
             this.description = description;
-            if( debit.equals("D") )
-                this.amount = amount;
-            else
-                this.amount = "-" + amount ;
+            this.amount = amount;
         }
 
         public int getType() {
-            return ROW;
+            return DETAIL_ROW;
         }
     }
 
