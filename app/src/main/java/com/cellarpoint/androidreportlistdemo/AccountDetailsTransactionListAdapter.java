@@ -22,7 +22,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     private static String TAG = "AccountDetailsTransactionListAdapter";
 
-    private List<RowInterface> dataset = new ArrayList<RowInterface>();
+    private List<Row> dataset = new ArrayList<Row>();
 
     private boolean odd = false;
 
@@ -80,37 +80,37 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         TransactionsViewHolder viewHolder = null;
         switch( viewType )
         {
-            case RowInterface.HEADER:
+            case Row.HEADER:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_header_row, parent, false);
                 viewHolder = new HeaderViewHolder(v);
                 break;
 
-            case RowInterface.SUBHEADER:
+            case Row.SUBHEADER:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_subheader_row, parent, false);
                 viewHolder = new SubHeaderViewHolder(v);
                 break;
 
-            case RowInterface.DETAIL_ROW:
+            case Row.DETAIL:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_row, parent, false);
                 viewHolder = new RowViewHolder(v);
                 break;
 
-            case RowInterface.MESSAGE_ROW:
+            case Row.MESSAGE:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_none_row, parent, false);
                 viewHolder = new MessageRowViewHolder(v);
                 break;
 
-            case RowInterface.TOTAL_ROW:
+            case Row.TOTAL:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_total_row, parent, false);
                 viewHolder = new TotalRowViewHolder(v);
                 break;
 
-            case RowInterface.SUB_FOOTER_ROW:
+            case Row.SUBFOOTER:
 
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.account_details_transactions_list_subfooter_row, parent, false);
                 viewHolder = new SubFooterRowViewHolder(v);
@@ -277,19 +277,19 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     // Row
 
-    private interface RowInterface {
+    private interface Row {
 
         int HEADER = 0;
         int SUBHEADER = 1;
-        int DETAIL_ROW = 2;
-        int MESSAGE_ROW = 3;
-        int TOTAL_ROW = 4;
-        int SUB_FOOTER_ROW = 5;
+        int DETAIL = 2;
+        int MESSAGE = 3;
+        int TOTAL = 4;
+        int SUBFOOTER = 5;
 
         int getType();
     }
 
-    private static class HeaderRow implements RowInterface {
+    private static class HeaderRow implements Row {
 
         private String title;
 
@@ -302,7 +302,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-    private static class SubHeaderRow implements RowInterface {
+    private static class SubHeaderRow implements Row {
 
         final static DateFormat df = new SimpleDateFormat("EEEE MMM dd, yyyy");
 
@@ -321,7 +321,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
     }
 
-    private static class DetailRow implements RowInterface {
+    private static class DetailRow implements Row {
 
         private String description;
         private String amount;
@@ -335,11 +335,11 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
 
         public int getType() {
-            return DETAIL_ROW;
+            return DETAIL;
         }
     }
 
-    private static class SubFooterRow implements RowInterface {
+    private static class SubFooterRow implements Row {
 
         private boolean odd;
 
@@ -348,11 +348,11 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
 
         public int getType() {
-            return SUB_FOOTER_ROW;
+            return SUBFOOTER;
         }
     }
 
-    private static class TotalRow implements RowInterface {
+    private static class TotalRow implements Row {
 
         private String total;
         private boolean odd;
@@ -364,11 +364,11 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
 
         public int getType() {
-            return TOTAL_ROW;
+            return TOTAL;
         }
     }
 
-    private static class MessageRow implements RowInterface {
+    private static class MessageRow implements Row {
 
         private String message;
 
@@ -377,7 +377,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         }
 
         public int getType() {
-            return MESSAGE_ROW;
+            return MESSAGE;
         }
     }
 }
