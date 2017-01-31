@@ -22,14 +22,14 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     private static String TAG = "AccountDetailsTransactionListAdapter";
 
-    private List<Row> dataset = new ArrayList<Row>();
+    private List<Row> rowList = new ArrayList<Row>();
 
     private boolean odd = false;
 
     final static DateFormat inboundDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public void appendHeaderRow( String name ) {
-        dataset.add( new HeaderRow( name ) );
+        rowList.add( new HeaderRow( name ) );
     }
 
     public void appendSubHeaderRow( String inboundDate ) {
@@ -43,34 +43,34 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
         catch ( ParseException e ) {
             Log.d(TAG, "Transaction Date format is wrong");
         }
-        dataset.add( new SubHeaderRow( date, odd ) );
+        rowList.add( new SubHeaderRow( date, odd ) );
     }
 
     public void appendDetailRow( String description, String amount ) {
-        dataset.add( new DetailRow( description, amount, odd ) );
+        rowList.add( new DetailRow( description, amount, odd ) );
     }
 
     public void appendSubFooterRow() {
 
-        dataset.add(new SubFooterRow( odd ));
+        rowList.add(new SubFooterRow( odd ));
     }
 
     public void appendTotalRow(String total) {
 
         odd = !odd;
 
-        dataset.add(new TotalRow(total, odd));
+        rowList.add(new TotalRow(total, odd));
     }
 
     public void appendMessageRow( String message ) {
-        dataset.add( new MessageRow( message ) );
+        rowList.add( new MessageRow( message ) );
     }
 
     // overides - not public
 
     @Override
     public int getItemViewType(int position) {
-        return dataset.get( position ).getType();
+        return rowList.get( position ).getType();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
     @Override
     public int getItemCount() {
-        return dataset.size();
+        return rowList.size();
     }
 
 
@@ -163,7 +163,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind( int position ) {
 
-            HeaderRow headerRow = (HeaderRow) dataset.get(position);
+            HeaderRow headerRow = (HeaderRow) rowList.get(position);
             title.setText( headerRow.title );
         }
     }
@@ -182,7 +182,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind( int position ) {
 
-            SubHeaderRow subheaderRow = (SubHeaderRow) dataset.get(position);
+            SubHeaderRow subheaderRow = (SubHeaderRow) rowList.get(position);
             title.setText( subheaderRow.title );
 
             processBackgroundColour(subheaderRow.odd, rootView);
@@ -205,7 +205,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind( int position ) {
 
-            DetailRow row = (DetailRow) dataset.get(position);
+            DetailRow row = (DetailRow) rowList.get(position);
             description.setText( row.description );
             amount.setText( row.amount );
 
@@ -224,7 +224,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind(int position) {
 
-            SubFooterRow row = (SubFooterRow) dataset.get(position);
+            SubFooterRow row = (SubFooterRow) rowList.get(position);
 
             processBackgroundColour(row.odd, rootView);
         }
@@ -244,7 +244,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind(int position) {
 
-            TotalRow row = (TotalRow) dataset.get(position);
+            TotalRow row = (TotalRow) rowList.get(position);
             total.setText(row.total);
             odd = false;
             processBackgroundColour(row.odd, rootView);
@@ -266,7 +266,7 @@ public class AccountDetailsTransactionListAdapter extends RecyclerView.Adapter<A
 
         public void bind( int position ) {
 
-            MessageRow row = (MessageRow) dataset.get(position);
+            MessageRow row = (MessageRow) rowList.get(position);
 
             int  backgroundColor = rootView.getResources().getColor(R.color.odd_band_background );
             message.setText( row.message );
